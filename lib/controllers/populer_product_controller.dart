@@ -5,6 +5,8 @@ import 'package:food_deliverya_pp/models/products_model.dart';
 import 'package:food_deliverya_pp/utils/colors.dart';
 import 'package:get/get.dart';
 
+import '../models/cart_model.dart';
+
 class PopularProductController extends GetxController{
   final PopularProductRepo popularProductRepo;
 
@@ -16,11 +18,15 @@ class PopularProductController extends GetxController{
   bool _isLoded=false;
   bool get isLoded=>_isLoded;
 
-  int _inCartItems=0;
-  int get inCrartItems=>_inCartItems+_quantity;
-
   int _quantity=0;
   int get quantity=>_quantity;
+
+  int _inCartItems=0;
+  int get inCartItems=>_inCartItems+_quantity;
+
+
+
+
 
   Future<void> getPopulerProductList()async {
     Response response=await popularProductRepo.getPopulerProducetList();
@@ -36,22 +42,30 @@ class PopularProductController extends GetxController{
   }
 
   void setQuantity(bool isIncrement){
-    if(isIncrement){
+    if(isIncrement==true){
       _quantity=checkQuantity(_quantity+1);
+   //   print("number of the items ${_quantity}");
     }else{
       _quantity=checkQuantity(_quantity-1);
+   //   print("decrement ${_quantity}");
     }
     update();
   }
 
   int checkQuantity(int quantity){
-    if((inCrartItems+quantity)<0){
-      Get.snackbar("Item count", "You can't reduce more!",backgroundColor: AppColors.mainColor,colorText: Colors.white);
-      print("${inCrartItems}");
-      update();
-      return 0;
-    }else if((inCrartItems+quantity)>20){
+    if((_inCartItems+quantity)<0){
       Get.snackbar("Item count", "You can't add more!",backgroundColor: AppColors.mainColor,colorText: Colors.white);
+      if(_inCartItems>0){
+        _quantity=-_inCartItems;
+        print("${_quantity}");
+        print("${_inCartItems}");
+        return _quantity;
+      }
+      return 0;
+    }
+    else  if(((_inCartItems+quantity)>20)){
+      Get.snackbar("Item count", "You can't reduce more!",backgroundColor: AppColors.mainColor,colorText: Colors.white);
+      print("incr ${inCartItems}");
 
       return 20;
     }
@@ -71,18 +85,18 @@ class PopularProductController extends GetxController{
     print("the quantity in the cart is ${_inCartItems}");
   }
   void addItem(ProductsModel product){
-  //  if(quantity>0){
       _cart.addItem(product,_quantity);
       _quantity=0;
       _inCartItems=_cart.getQuantity(product);
       _cart.item.forEach((key, value) { 
         print("the Id is ${value.id}   the quantity is ${value.quantity}");
       });
-    /*   }
-   else{
-      Get.snackbar("Item count", "Your should  at least add an item in the cart!",
-          backgroundColor: AppColors.mainColor,
-          colorText: Colors.white);
-    }*/
+      update();
+  }
+  int get totalItems{
+    return _cart.totalItems;
+  }
+  List<CartModel> get getItems {
+    return _cart.getItems;
   }
 }

@@ -15,11 +15,11 @@ class Dimensions{
   static double height30=screenHeight/26.03;
   static double height45=screenHeight/17.35;
 //dynamic width
-  static double width10=screenHeight/78.1;
-  static double width15=screenHeight/52.06;
-  static double width20=screenHeight/39.05;
-  static double width30=screenHeight/26.03;
-  static double width45=screenHeight/17.35;
+  static double width10=screenWidth/38.2;
+  static double width15=screenWidth/26.13;
+  static double width20=screenWidth/19.6;
+  static double width30=screenWidth/13.066;
+  static double width45=screenWidth/8.71;
 //dynamic radius
   static double radius15=screenHeight/52.06;
   static double radius20=screenHeight/39.05;

@@ -68,7 +68,8 @@ import 'package:flutter/material.dart';
 import 'package:food_deliverya_pp/controllers/populer_product_controller.dart';
 import 'package:food_deliverya_pp/controllers/recommended_product_controller.dart';
 import 'package:food_deliverya_pp/routes/routes_helper.dart';
-import 'package:food_deliverya_pp/ui/widget_screen/food/recommend_food_detail.dart';
+import 'package:food_deliverya_pp/screens/cart_page.dart';
+import 'package:food_deliverya_pp/screens/recommend_food_detail.dart';
 import 'package:food_deliverya_pp/ui/widget_screen/main_food_screen/food_page_body.dart';
 import 'package:food_deliverya_pp/ui/widget_screen/main_food_screen/main_food__page.dart';
 import 'package:get/get.dart';
@@ -91,8 +92,8 @@ class MyApp extends StatelessWidget {
     return  GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: const MainFoodPage(),
-      initialRoute: RouteHelper.initiol,
+     // home: MainFoodPage(),
+      initialRoute: RouteHelper.getInitiol(),
       getPages: RouteHelper.routes,
     );
   }

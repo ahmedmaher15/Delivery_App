@@ -39,6 +39,7 @@ dependencies:
   dots_indicator: ^2.0.0
   dio: ^5.1.2
   http:
+  persistent_bottom_nav_bar: ^5.0.2
 
 dev_dependencies:
   flutter_test:
