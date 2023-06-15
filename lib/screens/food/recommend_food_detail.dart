@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:food_deliverya_pp/controllers/populer_product_controller.dart';
 import 'package:food_deliverya_pp/controllers/recommended_product_controller.dart';
 import 'package:food_deliverya_pp/routes/routes_helper.dart';
-import 'package:food_deliverya_pp/ui/shares_widget/app_icon.dart';
-import 'package:food_deliverya_pp/ui/shares_widget/big_text.dart';
-import 'package:food_deliverya_pp/ui/widget_screen/food/exandable_text_widget.dart';
+import 'package:food_deliverya_pp/ui/app_icon.dart';
+import 'package:food_deliverya_pp/ui/big_text.dart';
+import 'package:food_deliverya_pp/ui/exandable_text_widget.dart';
 import 'package:food_deliverya_pp/utils/colors.dart';
 import 'package:food_deliverya_pp/utils/dimensions.dart';
 import 'package:get/get.dart';
 
-import '../controllers/cart_controller.dart';
-import '../utils/app_constans.dart';
+import '../../controllers/cart_controller.dart';
+import '../../utils/app_constans.dart';
 
 
 class RecommendenFoodDetail extends StatelessWidget {
@@ -31,7 +31,7 @@ class RecommendenFoodDetail extends StatelessWidget {
         slivers: [
           SliverAppBar(
             automaticallyImplyLeading: false,
-            toolbarHeight: 70,
+            toolbarHeight: Dimensions.height30*2+Dimensions.height10,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -48,9 +48,9 @@ class RecommendenFoodDetail extends StatelessWidget {
               GetBuilder<PopularProductController>(builder: (controller) {
                 return GestureDetector(
                   onTap: (){
-                    if(controller.totalItems>=1) {
+
                       Get.toNamed(RouteHelper.getCartPage());
-                    }
+
                   },
                   child: Stack(
                     children: [
@@ -86,7 +86,7 @@ class RecommendenFoodDetail extends StatelessWidget {
               ],
             ),
             bottom: PreferredSize(
-              preferredSize: Size.fromHeight(30),
+              preferredSize: Size.fromHeight(Dimensions.height30),
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -94,7 +94,7 @@ class RecommendenFoodDetail extends StatelessWidget {
                         topRight: Radius.circular(Dimensions.radius20),
                         topLeft: Radius.circular(Dimensions.radius20))),
                 width: double.maxFinite,
-                padding: EdgeInsets.only(top: 5, bottom: 10),
+                padding: EdgeInsets.only(top: Dimensions.height10/2, bottom: Dimensions.height10),
                 child: Center(
                     child: BigText(
                   text: product.name!,
@@ -102,7 +102,7 @@ class RecommendenFoodDetail extends StatelessWidget {
                 )),
               ),
             ),
-            expandedHeight: 300,
+            expandedHeight: Dimensions.height10*30,
             pinned: true,
             backgroundColor: AppColors.yellowColor,
             flexibleSpace: FlexibleSpaceBar(
@@ -200,6 +200,7 @@ class RecommendenFoodDetail extends StatelessWidget {
                   child: Icon(
                     Icons.favorite,
                     color: AppColors.mainColor,
+                    size: Dimensions.height20,
                   ),
                 ),
                 GestureDetector(

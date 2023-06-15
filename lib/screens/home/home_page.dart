@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_deliverya_pp/ui/widget_screen/main_food_screen/main_food__page.dart';
-import 'package:food_deliverya_pp/utils/colors.dart';
+import 'package:food_deliverya_pp/account/account_page.dart';
+import 'package:food_deliverya_pp/screens/auth/sign_up_page.dart';
+import 'package:food_deliverya_pp/screens/cart/cart_history.dart';
+import 'package:food_deliverya_pp/screens/home/main_food__page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+
+import '../auth/sign_in_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,61 +17,61 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex=0;
-  //late PersistentTabController _controller;
-  List pages = [
+  late PersistentTabController _controller;
+/*  List pages = [
     MainFoodPage(),
     Container(child: Center(child: Text("Next Page"),),),
-    Container(child: Center(child: Text("Next Next Page"),),),
+    CartHistory(),
     Container(child: Center(child: Text("Next Next Next Page"),),),
   ];
     void onTapNav(int index){
       setState(() {
         _selectedIndex=index;
       });
-    }
- /* List<Widget> _buildScreens() {
+    }*/
+  List<Widget> _buildScreens() {
     return [
-      MainFoodPage(),
-      Container(child: Center(child: Text("Next Page"),),),
-      Container(child: Center(child: Text("Next Next Page"),),),
-      Container(child: Center(child: Text("Next Next Next Page"),),),
+      const MainFoodPage(),
+       Container(child: Center(child: Text("History Page")),),
+      const CartHistory(),
+      const AccountPage(),
     ];
   }
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.home),
+        icon: const Icon(CupertinoIcons.home),
         title: ("Home"),
-        activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorPrimary: CupertinoColors.activeOrange,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.archivebox_fill),
+        icon: const Icon(CupertinoIcons.archivebox_fill),
         title: ("Archive"),
-        activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorPrimary: CupertinoColors.activeOrange,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.cart_fill),
-        title: ("Cart"),
-        activeColorPrimary: CupertinoColors.activeBlue,
+        icon: const Icon(CupertinoIcons.cart_fill),
+        title: ("History"),
+        activeColorPrimary: CupertinoColors.activeOrange,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.person),
+        icon: const Icon(CupertinoIcons.person),
         title: ("Me"),
-        activeColorPrimary: CupertinoColors.activeBlue,
+        activeColorPrimary: CupertinoColors.activeOrange,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
     ];
-  }*/
+  }
     @override
   void initState() {
     // TODO: implement initState
-    //  _controller = PersistentTabController(initialIndex: 0);
+     _controller = PersistentTabController(initialIndex: 0);
     super.initState();
   }
-/*  @override
+  @override
   Widget build(BuildContext context) {
     return PersistentTabView(
       context,
@@ -86,18 +90,20 @@ class _HomePageState extends State<HomePage> {
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: ItemAnimationProperties( // Navigation Bar's items animation properties.
+      itemAnimationProperties: const ItemAnimationProperties( // Navigation Bar's items animation properties.
         duration: Duration(milliseconds: 200),
         curve: Curves.ease,
       ),
-      screenTransitionAnimation: ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
+      screenTransitionAnimation: const ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
         animateTabTransition: true,
         curve: Curves.ease,
         duration: Duration(milliseconds: 200),
       ),
       navBarStyle: NavBarStyle.style1, // Choose the nav bar style with this property.
     );
-  }*/
+  }}
+
+/*
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,4 +127,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-}
+}*/

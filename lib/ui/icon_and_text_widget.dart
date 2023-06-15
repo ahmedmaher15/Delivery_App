@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_deliverya_pp/ui/shares_widget/small_text.dart';
+import 'package:food_deliverya_pp/ui/small_text.dart';
 import 'package:food_deliverya_pp/utils/dimensions.dart';
 
 class IconAndTextWidget extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_deliverya_pp/ui/shares_widget/big_text.dart';
-import 'package:food_deliverya_pp/ui/shares_widget/small_text.dart';
+import 'package:food_deliverya_pp/ui/big_text.dart';
+import 'package:food_deliverya_pp/ui/small_text.dart';
 import 'package:food_deliverya_pp/utils/colors.dart';
 import 'package:food_deliverya_pp/utils/dimensions.dart';
 

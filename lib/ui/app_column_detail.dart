@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_deliverya_pp/ui/shares_widget/small_text.dart';
+import 'package:food_deliverya_pp/ui/small_text.dart';
 
-import '../../utils/colors.dart';
-import '../../utils/dimensions.dart';
-import '../widget_screen/main_food_screen/icon_and_text_widget.dart';
+import '../utils/colors.dart';
+import '../utils/dimensions.dart';
+import 'icon_and_text_widget.dart';
 import 'big_text.dart';
 
 class AppDetailColumn extends StatelessWidget {

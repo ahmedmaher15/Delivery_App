@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 class PopularProductRepo extends GetxService{
   final ApiClinet apiClinet;
   PopularProductRepo({required this.apiClinet});
-  Future<Response> getPopulerProducetList()async{
+  Future<Response> getPopulerProductList()async{
     return  await apiClinet.getData(AppConstants.POPULAR_PRODUCT_URI);
   }
 }

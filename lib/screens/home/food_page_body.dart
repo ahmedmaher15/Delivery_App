@@ -2,18 +2,18 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:food_deliverya_pp/controllers/recommended_product_controller.dart';
 import 'package:food_deliverya_pp/routes/routes_helper.dart';
-import 'package:food_deliverya_pp/ui/shares_widget/big_text.dart';
-import 'package:food_deliverya_pp/ui/shares_widget/small_text.dart';
-import 'package:food_deliverya_pp/screens/populer_food_detail.dart';
-import 'package:food_deliverya_pp/ui/widget_screen/main_food_screen/icon_and_text_widget.dart';
+import 'package:food_deliverya_pp/ui/big_text.dart';
+import 'package:food_deliverya_pp/ui/small_text.dart';
+import 'package:food_deliverya_pp/screens/food/populer_food_detail.dart';
+import 'package:food_deliverya_pp/ui/icon_and_text_widget.dart';
 import 'package:food_deliverya_pp/utils/app_constans.dart';
 import 'package:food_deliverya_pp/utils/colors.dart';
 import 'package:food_deliverya_pp/utils/dimensions.dart';
 import 'package:get/get.dart';
 
-import '../../../controllers/populer_product_controller.dart';
-import '../../../models/products_model.dart';
-import '../../shares_widget/app_column_detail.dart';
+import '../../controllers/populer_product_controller.dart';
+import '../../models/products_model.dart';
+import '../../ui/app_column_detail.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({Key? key}) : super(key: key);

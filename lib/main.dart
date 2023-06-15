@@ -65,15 +65,16 @@ appBar: AppBar(title: Text("Test"),),
 }*/
 
 import 'package:flutter/material.dart';
-import 'package:food_deliverya_pp/controllers/populer_product_controller.dart';
-import 'package:food_deliverya_pp/controllers/recommended_product_controller.dart';
+import 'package:food_deliverya_pp/controllers/cart_controller.dart';
+
 import 'package:food_deliverya_pp/routes/routes_helper.dart';
-import 'package:food_deliverya_pp/screens/cart_page.dart';
-import 'package:food_deliverya_pp/screens/recommend_food_detail.dart';
-import 'package:food_deliverya_pp/ui/widget_screen/main_food_screen/food_page_body.dart';
-import 'package:food_deliverya_pp/ui/widget_screen/main_food_screen/main_food__page.dart';
+import 'package:food_deliverya_pp/screens/auth/sign_in_page.dart';
+import 'package:food_deliverya_pp/screens/auth/sign_up_page.dart';
+
 import 'package:get/get.dart';
 import '../helper/dependencies.dart'as dep;
+import 'controllers/populer_product_controller.dart';
+import 'controllers/recommended_product_controller.dart';
 Future main() async{
  WidgetsFlutterBinding.ensureInitialized();
   await dep.init();
@@ -87,14 +88,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Get.find<PopularProductController>().getPopulerProductList();
-    Get.find<RecommendedProdactController>().getRecommendedProductList();
-    return  GetMaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-     // home: MainFoodPage(),
-      initialRoute: RouteHelper.getInitiol(),
-      getPages: RouteHelper.routes,
-    );
+    Get.find<CartController>().getCartData();
+   return GetBuilder<PopularProductController>(builder: (_){
+      return GetBuilder<RecommendedProdactController>(builder: (_){
+        return GetBuilder<CartController>(
+          builder: (_) {
+            return GetMaterialApp(
+              title: 'Flutter Demo',
+              debugShowCheckedModeBanner: false,
+             // home: SignInPage(),
+             initialRoute: RouteHelper.getSplashPage(),
+              getPages: RouteHelper.routes,
+            );
+          }
+        );
+      });
+    },);
   }
 }

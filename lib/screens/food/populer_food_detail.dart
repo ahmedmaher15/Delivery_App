@@ -3,14 +3,14 @@ import 'package:food_deliverya_pp/controllers/cart_controller.dart';
 import 'package:food_deliverya_pp/controllers/populer_product_controller.dart';
 import 'package:food_deliverya_pp/data/repository/popular_product_repo.dart';
 import 'package:food_deliverya_pp/routes/routes_helper.dart';
-import 'package:food_deliverya_pp/ui/shares_widget/app_icon.dart';
-import 'package:food_deliverya_pp/ui/widget_screen/food/exandable_text_widget.dart';
+import 'package:food_deliverya_pp/ui/app_icon.dart';
+import 'package:food_deliverya_pp/ui/exandable_text_widget.dart';
 import 'package:food_deliverya_pp/utils/app_constans.dart';
 import 'package:food_deliverya_pp/utils/dimensions.dart';
 import 'package:get/get.dart';
-import '../utils/colors.dart';
-import '../ui/shares_widget/app_column_detail.dart';
-import '../ui/shares_widget/big_text.dart';
+import '../../utils/colors.dart';
+import '../../ui/app_column_detail.dart';
+import '../../ui/big_text.dart';
 
 class PopulerFoodDetail extends StatelessWidget {
   PopulerFoodDetail({Key? key, required this.pageId, required this.page}) : super(key: key);
@@ -52,6 +52,8 @@ class PopulerFoodDetail extends StatelessWidget {
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: Colors.white),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GestureDetector(
                         onTap: () {
@@ -60,6 +62,7 @@ class PopulerFoodDetail extends StatelessWidget {
                         child: Icon(
                           Icons.remove,
                           color: AppColors.signColor,
+                          size: Dimensions.height20,
                         )),
                     SizedBox(
                       width: Dimensions.width10 / 2,
@@ -75,6 +78,7 @@ class PopulerFoodDetail extends StatelessWidget {
                         child: Icon(
                           Icons.add,
                           color: AppColors.signColor,
+                          size: Dimensions.height20,
                         )),
                   ],
                 ),
@@ -140,7 +144,7 @@ class PopulerFoodDetail extends StatelessWidget {
                   GetBuilder<PopularProductController>(builder: (controller) {
                     return GestureDetector(
                       onTap: (){
-                        if(controller.totalItems>=1)
+
                         Get.toNamed(RouteHelper.getCartPage());
                       },
                       child: Stack(
