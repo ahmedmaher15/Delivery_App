@@ -28,10 +28,10 @@ class AuthController extends GetxController implements GetxService {
     return responseModel;
   }
 
-  Future<ResponseModel> login(String email, String password) async {
+  Future<ResponseModel> login(String phone, String password) async {
     _isLoding = true;
     update();
-    Response response = await authRebo.login(email, password);
+    Response response = await authRebo.login(phone, password);
     late ResponseModel responseModel;
     if (response.statusCode == 200) {
       authRebo.saveUSerToken(response.body["token"]);

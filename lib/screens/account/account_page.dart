@@ -3,6 +3,7 @@ import 'package:food_deliverya_pp/base/custon_loder.dart';
 import 'package:food_deliverya_pp/base/show_custom_snackbar.dart';
 import 'package:food_deliverya_pp/controllers/auth_controller.dart';
 import 'package:food_deliverya_pp/controllers/cart_controller.dart';
+import 'package:food_deliverya_pp/controllers/location_controller.dart';
 import 'package:food_deliverya_pp/controllers/user_controller.dart';
 import 'package:food_deliverya_pp/routes/routes_helper.dart';
 import 'package:food_deliverya_pp/ui/account_widget.dart';
@@ -70,11 +71,36 @@ class AccountPage extends StatelessWidget {
                           size: Dimensions.height10*5,)),
                         SizedBox(height: Dimensions.height20,),
                         //address
-                        AccountWidget(bigText: BigText(text: "Location",) , appIcon: AppIcon(icon: Icons.location_on,
-                          bgColor: AppColors.yellowColor,
-                          iconColor: Colors.white,
-                          iconSize: Dimensions.height10*5/2,
-                          size: Dimensions.height10*5,)),
+                        GetBuilder<LocationController>(
+                          builder: (locationController) {
+                            if(_userLogedIn&&locationController.addressTypList.isEmpty){
+                              return GestureDetector(
+                                onTap: (){
+                                  Get.toNamed(RouteHelper.getAddressPage());
+                                },
+                                child: AccountWidget(bigText: BigText(text: "Fill in your address",) ,
+                                    appIcon: AppIcon(icon: Icons.location_on,
+                                  bgColor: AppColors.yellowColor,
+                                  iconColor: Colors.white,
+                                  iconSize: Dimensions.height10*5/2,
+                                  size: Dimensions.height10*5,)),
+                              );
+                            }else{
+                              return GestureDetector(
+                                onTap: (){
+                                  Get.toNamed(RouteHelper.getAddressPage());
+                                },
+                                child: AccountWidget(bigText: BigText(text: "Your address",),
+                                    appIcon: AppIcon(icon: Icons.location_on,
+                                  bgColor: AppColors.yellowColor,
+                                  iconColor: Colors.white,
+                                  iconSize: Dimensions.height10*5/2,
+                                  size: Dimensions.height10*5,)),
+                              );
+                            }
+
+                          }
+                        ),
                         SizedBox(height: Dimensions.height20,),
                         //message
                         AccountWidget(bigText: BigText(text: "Messages",) , appIcon: AppIcon(icon: Icons.message_outlined,
@@ -89,6 +115,7 @@ class AccountPage extends StatelessWidget {
                              Get.find<AuthController>().clearShardData();
                              Get.find<CartController>().clear();
                              Get.find<CartController>().clearCartHistory();
+                             Get.find<LocationController>().clearAddressList();
                              Get.offNamed(RouteHelper.getSignIn());
                            }else{
                             showCustomSnackBar("Please login first");

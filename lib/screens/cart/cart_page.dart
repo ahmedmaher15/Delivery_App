@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_deliverya_pp/base/no_data_page.dart';
 import 'package:food_deliverya_pp/controllers/auth_controller.dart';
 import 'package:food_deliverya_pp/controllers/cart_controller.dart';
+import 'package:food_deliverya_pp/controllers/location_controller.dart';
 import 'package:food_deliverya_pp/controllers/populer_product_controller.dart';
 import 'package:food_deliverya_pp/controllers/recommended_product_controller.dart';
 import 'package:food_deliverya_pp/routes/routes_helper.dart';
@@ -16,6 +17,7 @@ import 'package:get/get.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -233,6 +235,13 @@ class CartPage extends StatelessWidget {
                 onTap: () {
                   if(Get.find<AuthController>().usrLogedIn()) {
                           carProduct.addToHestory();
+                          print("loggedin?");
+                          if(Get.find<LocationController>().addressList.isEmpty){
+                            print("loggedinin?");
+                            Get.toNamed(RouteHelper.getAddressPage());
+                          }else{
+                            Get.offNamed(RouteHelper.getInitiol(),);
+                          }
                         }else{
                     Get.toNamed(RouteHelper.getSignIn());
                   }

@@ -18,25 +18,20 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var emailController = TextEditingController();
+    var phoneController = TextEditingController();
     var passwordController = TextEditingController();
 
     void _login(AuthController authController){
-      String email=emailController.text.trim();
+      String phone=phoneController.text.trim();
       String password=passwordController.text.trim();
-     if(email.isEmpty){
-        showCustomSnackBar("Typ in your email address",title: "Email address");
-
-      }else if(!GetUtils.isEmail(email)){
-        showCustomSnackBar("Typ in a valid email address",title: "Valid email address");
-      }else if(password.isEmail){
-        showCustomSnackBar("Typ in your password",title: "Password");
+     if(phone.isEmpty){
+        showCustomSnackBar("Typ in your phone ",title: "Your phone");
 
       }else if(password.length<6){
         showCustomSnackBar("Password can't be less the six characters",title: "Password");
 
       }else{
-        authController.login(email,password).then((status){
+        authController.login(phone,password).then((status){
           if(status.isSuccess){
             print("Success Login");
             Get.toNamed(RouteHelper.getInitiol());
@@ -91,9 +86,9 @@ class SignInPage extends StatelessWidget {
                 ),
                 //Email TextField
                 AppTextField(
-                    textController: emailController,
-                    hentText: "Email",
-                    icon: Icons.email),
+                    textController: phoneController,
+                    hentText: "Phone",
+                    icon: Icons.phone),
                 SizedBox(
                   height: Dimensions.height20,
                 ),

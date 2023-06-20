@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_deliverya_pp/account/account_page.dart';
-import 'package:food_deliverya_pp/screens/auth/sign_up_page.dart';
 import 'package:food_deliverya_pp/screens/cart/cart_history.dart';
 import 'package:food_deliverya_pp/screens/home/main_food__page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
+import '../account/account_page.dart';
 import '../auth/sign_in_page.dart';
 
 class HomePage extends StatefulWidget {

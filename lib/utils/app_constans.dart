@@ -6,6 +6,11 @@ class AppConstants{
   static const String RECOMMENDED_PRODUCT_URI="/api/v1/products/recommended";
   static const String DRINKS_URI="/api/v1/products/drinks";
   static const String UPLOADE_URL="/uploads/";
+  //google map
+  static const String USER_ADDRESS="user_address";
+  static const String ADD_USER_ADDRESS="/api/v1/customer/address/add";
+  static const String GEOCODE_URI="/api/v1/config/geocode-api";
+  static const String ADDRESS_LIST_URI="/api/v1/customer/address/list";
 
   //user and auth end  points
   static const String REGISTRATION_URI="/api/v1/auth/register";

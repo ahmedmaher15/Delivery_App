@@ -25,7 +25,7 @@ class AuthRebo{
   }
 
   Future<Response> login(String email, String password) async {
-    return await apiClinet.postData(AppConstants.LOGIN_URI,{"email":email,"password":password});
+    return await apiClinet.postData(AppConstants.LOGIN_URI,{"phone":email,"password":password});
   }
   //first we call the user method and save th token in local storage
   Future<bool> saveUSerToken(String token) async {
