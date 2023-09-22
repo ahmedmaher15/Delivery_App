@@ -21,30 +21,32 @@ class AppDetailColumn extends StatelessWidget {
           height: Dimensions.height10,
         ),
         //comments and  section
-        Row(
-          children: [
-            Wrap(
-              children: List.generate(
-                  5,
-                      (index) => Icon(
-                    Icons.star,
-                    color: AppColors.mainColor,
-                    size: Dimensions.width15,
-                  )),
-            ),
-            SizedBox(
-              width: Dimensions.width10,
-            ),
-            SmallText(text: "4.5"),
-            SizedBox(
-              width: Dimensions.width10,
-            ),
-            SmallText(text: "1287"),
-            SizedBox(
-              width: Dimensions.width10,
-            ),
-            SmallText(text: "Comments"),
-          ],
+        FittedBox(
+          child: Row(
+            children: [
+              Wrap(
+                children: List.generate(
+                    5,
+                        (index) => Icon(
+                      Icons.star,
+                      color: AppColors.mainColor,
+                      size: Dimensions.width15,
+                    )),
+              ),
+              SizedBox(
+                width: Dimensions.width10,
+              ),
+              SmallText(text: "4.5"),
+              SizedBox(
+                width: Dimensions.width10,
+              ),
+              SmallText(text: "1287"),
+              SizedBox(
+                width: Dimensions.width10,
+              ),
+              SmallText(text: "Comments"),
+            ],
+          ),
         ),
         SizedBox(
           height: Dimensions.height10,

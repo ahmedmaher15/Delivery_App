@@ -69,7 +69,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
       ),
       body: GetBuilder<UserController>(
         builder: (userController) {
-          if(_contactPersonName.text.isEmpty){
+          if(_contactPersonName.text.isEmpty&&userController.userModel!=null){
             _contactPersonName.text='${userController.userModel.name}';
             _contactPersonNumber.text='${userController.userModel.phone}';
             if(lController.addressList.isNotEmpty){
@@ -109,7 +109,14 @@ class _AddAddressPageState extends State<AddAddressPage> {
                             myLocationEnabled: true,
                             mapToolbarEnabled: false,
                             onTap: (latLang){
-                              Get.toNamed(RouteHelper.getPickAddressPage(),arguments: PickAddressMap());
+                            //TODO:fix this route
+                          /*    Get.toNamed(RouteHelper.getPickAddressPage(),arguments:
+                              PickAddressMap(
+                                fromSignUp: false,
+                                fromAddress: _isLogged,
+                                googleMapController: locationController.mapController,));*/
+                              Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                                  PickAddressMap(fromSignUp: false, fromAddress: true,googleMapController: locationController.mapController),));
                             },
                             onCameraIdle: (){
                               locationController.updatePosition(_cameraPosition,true);

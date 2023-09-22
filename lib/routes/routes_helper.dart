@@ -21,7 +21,6 @@ class RouteHelper{
   static const String addAddress="/add-address";
   static const String pickAddressMap="/pick-address";
 
-
   static String getSplashPage()=>"$splashPage";
   static String getInitiol()=>"$initiol";
   static String getPopularFood(int pageId,String page)=>"$popularFood?pageId=$pageId&page=$page";
@@ -58,8 +57,8 @@ class RouteHelper{
     GetPage(name: cartPage, page: (){return const CartPage(); },transition: Transition.fadeIn),
     GetPage(name: addAddress, page: (){return const AddAddressPage(); },transition: Transition.fadeIn),
     GetPage(name: pickAddressMap, page: (){PickAddressMap _pickAddress=Get.arguments;
-      return const PickAddressMap();
-      },transition: Transition.fadeIn)
+      return  _pickAddress;
+      })
 
   ];
 }

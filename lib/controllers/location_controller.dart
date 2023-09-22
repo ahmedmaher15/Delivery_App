@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:food_deliverya_pp/data/repository/location_repo.dart';
 import 'package:food_deliverya_pp/models/response_model.dart';
 import 'package:get/get.dart';
@@ -43,11 +44,27 @@ class LocationController extends GetxController implements GetxService {
 
   bool _loading = false;
 
-  bool get loding => _loading;
+  bool get loading => _loading;
 
   Position get position => _position;
 
   Position get pickPosition => _pickPosition;
+
+  /*for service zoon*/
+  bool _isLoading = false;
+
+  bool get isLoding => _isLoading;
+
+  /*whether the user is in service zone or not*/
+  bool _inZone = false;
+
+  bool get inZone => _inZone;
+
+  /*show and hiding the button as the map loads*/
+
+  bool _buttonDisabled = true;
+
+  bool get bottonDisabled => _buttonDisabled;
 
   void setMapController(GoogleMapController mapController) {
     _mapController = mapController;
@@ -81,18 +98,25 @@ class LocationController extends GetxController implements GetxService {
             speed: 1,
           );
         }
-        //the place when we will start to take with the  server////////////////////////
+/*
+* if button  value is false we are in service area
+* */
+        ResponseModel _responseModle=await getZone(position.target.latitude.toString(), position.target.longitude.toString(), false);
 
+        _buttonDisabled= !_responseModle .isSuccess;
+
+        //the place when we will start to take with the  server////////////////////////
         if (_changeAddress == true) {
-          String _address = await getAddreesfromGeocode(
-              LatLng(position.target.latitude, position.target.longitude));
-          fromAddress
-              ? _placemark = Placemark(name: _address)
-              : _pickPlacemark = Placemark(name: _address);
+          String _address = await getAddreesfromGeocode(LatLng(position.target.latitude, position.target.longitude));
+          fromAddress ? _placemark = Placemark(name: _address) : _pickPlacemark = Placemark(name: _address);
         }
       } catch (e) {
         print(e);
       }
+      _loading = false;
+      update();
+    } else {
+      _updateAdressData = true;
     }
   }
 
@@ -102,9 +126,7 @@ class LocationController extends GetxController implements GetxService {
     if (response.body["status"] == "OK") {
       _address = response.body["results"][0]['formatted_address'].toString();
       // print("printing address"+_address);
-    } else {
-      print("There is an error in your map");
-    }
+    } else {}
     update();
     return _address;
   }
@@ -173,6 +195,35 @@ class LocationController extends GetxController implements GetxService {
     _allAddressList = [];
     _addressList = [];
     update();
+  }
+
+  setAddressData() {
+    _position = pickPosition;
+    _placemark = pickPlacemark;
+    _updateAdressData = false;
+    update();
+  }
+
+  Future<ResponseModel> getZone(String lat, String lang, bool markerLoad) async {
+    late ResponseModel _responseModel;
+
+    if (markerLoad) {
+      _loading = true;
+    } else {
+      _isLoading = true;
+    }
+    update();
+    await Future.delayed(Duration(seconds: 2), () {
+      _responseModel = ResponseModel(true, 'success');
+      if (markerLoad) {
+        _loading = false;
+      } else {
+        _isLoading = false;
+      }
+      _inZone=true;
+    });
+    update();
+    return _responseModel;
   }
 
   getUserAddressFromLocalStorage() {
